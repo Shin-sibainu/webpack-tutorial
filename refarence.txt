@@ -1,0 +1,35 @@
+//webpack導入の流れ。
+
+nodejsのインストール。
+
+npm init -y 
+npm install --save-dev webpack webpack-cli
+
+src/index.js, src/sub.jsを作成。
+
+npx webpackでバンドルする。
+実際の開発ではnpm scriptsを使う。
+↓
+package.jsonの中身を変更。余計なとこを消す。"build": "webpack"を追加する。
+npm run buildを実行。
+
+webpack.config.jsでカスタマイズする.
+entryとoutputから。
+mode設定でソースマップとコードの圧縮。
+development
+⇨容量が膨らむが、バンドル時間が短い。ソースマップに対応。
+production
+⇨容量が抑えられパフォーマンス良いが、ビルド時間が伸びる。
+
+webpackでローカルサーバーの起動。変更時にブラウザをリロードする。
+npm i --save-dev webpack-dev-server
+"start": "webpack serve"を追加。
+webpack.config.jsファイルを変更。
+devServer: {
+    static: "dist",
+    open: true
+}
+
+差分ビルド。ブラウザで確認する必要がないときだけ。
+"watch": "webpack --watch"
+
